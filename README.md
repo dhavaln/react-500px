@@ -1,4 +1,4 @@
-## Includes
+## React-500px
 Multi-page Redux support with 500px API using Axios. The initial commit contains only few features like browse through some categories and load photo detail.
 
  
