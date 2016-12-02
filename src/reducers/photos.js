@@ -18,7 +18,6 @@ const initialState = {
 }
 
 export default function photos(state = initialState, action){
-  console.log('action received', action);
   switch(action.type){
     case 'PHOTOS_LOADED':
       return Object.assign({}, state,{

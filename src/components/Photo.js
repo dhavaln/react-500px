@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 const Photo = React.createClass({
   render(){
     return (
-      <Link to={`/photo/${this.props.id}`}>        
+      <Link to={`/photo/${this.props.id}`} className="grid-item">
           <img src={this.props.image_url} className="photo" />
       </Link>
     )

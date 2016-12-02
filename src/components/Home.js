@@ -7,20 +7,14 @@ const Home = React.createClass({
         this.props.loadPhotos(this.props.selectedFilter, 1);
       }
   },
-  changeFilter(e){
-    const value = e.target.options[e.target.selectedIndex].value;
-    this.props.loadPhotos(value, 1);
-  },
   render(){
     return (
       <div>
-        <div>
-          <select onChange={this.changeFilter}>
-            {this.props.filters.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
-          </select>
+        <div >
+
         </div>
         <div>
-        <Photos {...this.props}/>
+          <Photos {...this.props}/>
         </div>
       </div>
     )

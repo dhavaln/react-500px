@@ -9,15 +9,33 @@ const Main = React.createClass({
           }
         });
     },
-
+    changeFilter(e){
+      const value = e.target.options[e.target.selectedIndex].value;
+      this.props.loadPhotos(value, 1);
+    },
     render(){
       return (
         <div className="App">
-          <h1 className="">
-            React App using <a href="https://500px.com" target="_blank">500px API</a>
-          </h1>
-          <hr/>
+          <nav className="pt-navbar .modifier">
+            <div className="pt-navbar-group pt-align-left">
+              <div className="pt-navbar-heading">
+                <Link to="/">
+                  React-500px
+                </Link>
+              </div>
+              <input className="pt-input" placeholder="Search..." type="text" />
+              <span className="pt-navbar-divider"></span>
+              <span>Category &nbsp;</span>
+                <div className="pt-select">
+                  <select onChange={this.changeFilter}>
+                    {this.props.filters.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
+                  </select>
+                </div>
+            </div>
+          </nav>
+          <div>
           {React.cloneElement(this.props.children, this.props)}
+          </div>
         </div>
       )
     }

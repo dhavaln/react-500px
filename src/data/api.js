@@ -9,7 +9,7 @@ export function fetchPhotos(filter, page){
         feature: filter,
         page: page || 2,
         consumer_key: CONSUMER_KEY,
-        image_size: 3
+        image_size: 6
       }
     });
 }
@@ -17,7 +17,7 @@ export function fetchPhotos(filter, page){
 export function fetchPhotoDetail(id){
   return axios.get(`${URL}/${id}?comments`,{
     params:{
-      consumer_key: CONSUMER_KEY  
+      consumer_key: CONSUMER_KEY
     }
   })
 }

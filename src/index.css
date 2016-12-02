@@ -9,7 +9,20 @@ img.photo{
   height: auto;
 }
 
-div.photo-container{
-  width: 300px;  
-  float: left;
+.photo-container{
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.grid-item{
+  margin: 2px;
+}
+
+.photo-detail img{
+  border: 20px solid #f9f9f9;
+  border-radius: 5px;
+}
+
+.photo-detail-wrapper{
+    padding-bottom: 50px;
 }
