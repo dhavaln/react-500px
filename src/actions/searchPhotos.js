@@ -4,9 +4,9 @@ export const PHOTO_SEARCH_FETCH = 'PHOTO_SEARCH_FETCH';
 export const PHOTO_SEARCH_ERROR = 'PHOTO_SEARCH_ERROR';
 export const PHOTO_SEARCH_LOADED = 'PHOTO_SEARCH_LOADED';
 
-export const searchPhotos = (search) => (dispatch) => {
+export const searchPhotos = (search, page) => (dispatch) => {
     dispatch({type: PHOTO_SEARCH_FETCH, search});
-    fetchPhotosWithTerm(search)
+    fetchPhotosWithTerm(search, page)
     .then(response => {
       dispatch(searchResult(response.data));
     })

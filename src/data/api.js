@@ -24,7 +24,7 @@ export function fetchPhotoDetail(id){
   })
 }
 
-export function fetchPhotosWithTerm(search, filter, page){
+export function fetchPhotosWithTerm(search, page){
   return axios.get(`${URL}/search`,{
     params:{
       term: search,

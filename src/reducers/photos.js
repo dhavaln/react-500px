@@ -34,12 +34,16 @@ export default function photos(state = initialState, action){
       });
     case PHOTOS_FETCH:
       if(state.selectedFilter !== action.selectedFilter){
-        return Object.assign({}, state, {isLoading: true, selectedFilter: action.selectedFilter, photos: []});
+        return Object.assign({}, state, {isLoading: true, selectedFilter: action.selectedFilter, photos: [], search: ''});
       }else{
         return Object.assign({}, state, {isLoading: true, selectedFilter: action.selectedFilter});
       }
     case PHOTO_SEARCH_FETCH:
-      return Object.assign({}, state, {isLoading: true, selectedFilter: action.selectedFilter, photos: [], search: action.search});
+      if(state.search == '' || state.search != action.search){
+        return Object.assign({}, state, {isLoading: true, selectedFilter: action.selectedFilter, photos: [], search: action.search});
+      }else{
+        return Object.assign({}, state, {isLoading: true, selectedFilter: action.selectedFilter});
+      }
     case PHOTOS_ERROR:
     case PHOTO_SEARCH_ERROR:
       return Object.assign({}, state, {isLoading: false, isError: true, message: action.message});

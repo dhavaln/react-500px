@@ -10,7 +10,11 @@ const Main = React.createClass({
     componentDidMount(){
         window.addEventListener('scroll', (e)=>{
           if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
+            if(this.props.search !== ''){
+              this.props.searchPhotos(this.props.search, this.props.page + 1);
+            }else{
               this.props.loadPhotos(this.props.selectedFilter, this.props.page + 1);
+            }
           }
         });
     },
