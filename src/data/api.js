@@ -3,6 +3,8 @@ import axios from 'axios';
 const URL = "https://api.500px.com/v1/photos";
 const CONSUMER_KEY = "iNJ2Eb3qNLmOzp4AftO7EwddYyimvTat1DpdeOjk";
 
+export const PAGE_URL = "https://500px.com";
+
 export function fetchPhotos(filter, page){
     return axios.get(URL,{
       params: {

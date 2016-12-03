@@ -3,7 +3,7 @@ import { PHOTO_DETAIL_FETCH, PHOTO_DETAIL_ERROR, PHOTO_DETAIL_LOADED } from '../
 const defaultState = {
   isLoading: false,
   isError: false,
-  photo: {},
+  photo: { user: {}},
   comments: [],
   message: ''
 }

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Popover, PopoverInteractionKind, Position } from '@blueprintjs/core';
+import { PAGE_URL } from '../data/api';
 
 const PhotoDetail = React.createClass({
   componentDidMount(){
@@ -12,7 +14,7 @@ const PhotoDetail = React.createClass({
     let errorEl = <div></div>;
 
     if(detail.isLoading){
-      loadingEl = (
+      return (
         <div>
           <br/>
           <br/>
@@ -26,35 +28,55 @@ const PhotoDetail = React.createClass({
           </div>
         </div>
       )
-    }
-
-    if(this.props.isError){
-      errorEl = (
+    }else if(this.props.isError){
+      return (
         <div className="pt-callout .modifier">
           <h5>Error</h5>
           {this.props.message.message}
         </div>
       )
-    }
-
-    return(
-      <div className="photo-detail-wrapper">
-        {loadingEl}
-        {errorEl}
-        <br/>
-        <br/>
-        <div className="photo-detail">
-          <img src={detail.photo.image_url} />
-        </div>
+    }else{
+      let popoverContent = (
         <div>
-          <span className="pt-icon-heart">&nbsp;{detail.photo.positive_votes_count}</span>
-          <span className="pt-navbar-divider"></span>
-          <span className="pt-icon-eye-open">&nbsp;{detail.photo.times_viewed}</span>
-          <span className="pt-navbar-divider"></span>
-          <span className="pt-icon-comment">&nbsp;{detail.comments.length}</span>
+          <h5>{detail.photo.camera}</h5>
+          <p>
+            ISO {detail.photo.iso}
+            <span className="pt-navbar-divider"></span>
+            {detail.photo.shutter_speed}s
+            <span className="pt-navbar-divider"></span>
+            ƒ/{detail.photo.aperture}
+          </p>
         </div>
-      </div>
-    )
+      );
+
+      return(
+        <div className="photo-detail-wrapper">
+          <br/>
+          <br/>
+          <div style={{fontSize: '20px', paddingBottom: '10px'}}>
+            <a href={`${PAGE_URL}${detail.photo.url}`} target="_blank">
+              {detail.photo.name}
+            </a>
+          </div>
+          <div className="photo-detail">
+            <img src={detail.photo.image_url} className="pt-elevation-3"/>
+          </div>
+          <div style={{paddingTop: '10px'}}>
+            <span className="pt-icon-heart">&nbsp;{detail.photo.positive_votes_count}</span>
+            <span className="pt-navbar-divider"></span>
+            <span className="pt-icon-eye-open">&nbsp;{detail.photo.times_viewed}</span>
+            <span className="pt-navbar-divider"></span>
+            <Popover content={popoverContent}
+                     interactionKind={PopoverInteractionKind.CLICK}
+                     popoverClassName="pt-popover-content-sizing"
+                     position={Position.TOP}
+                     useSmartPositioning={false}>
+                <span className="pt-icon-camera" style={{cursor: 'pointer'}}></span>
+            </Popover>
+          </div>          
+        </div>
+      )
+    }
   }
 });
 
