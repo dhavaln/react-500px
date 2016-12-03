@@ -6,7 +6,6 @@ export const PHOTO_DETAIL_LOADED = 'PHOTO_DETAIL_LOADED';
 
 export const loadPhotoDetail = (id) => (dispatch) => {
     dispatch({type: PHOTO_DETAIL_FETCH});
-
     fetchPhotoDetail(id)
     .then(response => {
       dispatch(photoDetailLoaded(response.data));

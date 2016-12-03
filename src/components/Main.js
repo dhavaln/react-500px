@@ -2,6 +2,11 @@ import React from 'react';
 import {Link} from 'react-router';
 
 const Main = React.createClass({
+    getInitialState(){
+      return {
+        search: ''
+      }
+    },
     componentDidMount(){
         window.addEventListener('scroll', (e)=>{
           if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
@@ -13,6 +18,13 @@ const Main = React.createClass({
       const value = e.target.options[e.target.selectedIndex].value;
       this.props.loadPhotos(value, 1);
     },
+    handleChange(e){
+      this.setState({search: e.target.value});
+    },
+    handleFormSubmit(e){
+      e.preventDefault();
+      this.props.searchPhotos(this.state.search);
+    },
     render(){
       return (
         <div className="App">
@@ -23,7 +35,10 @@ const Main = React.createClass({
                   React-500px
                 </Link>
               </div>
-              <input className="pt-input" placeholder="Search..." type="text" />
+              <form onSubmit={this.handleFormSubmit}>
+                <input className="pt-input" placeholder="Search..." type="text" onChange={this.handleChange}/>
+                <input type="submit" style={{display: 'none'}} />
+              </form>
               <span className="pt-navbar-divider"></span>
               <span>Category &nbsp;</span>
                 <div className="pt-select">

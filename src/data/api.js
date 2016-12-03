@@ -7,7 +7,7 @@ export function fetchPhotos(filter, page){
     return axios.get(URL,{
       params: {
         feature: filter,
-        page: page || 2,
+        page: page || 1,
         consumer_key: CONSUMER_KEY,
         image_size: 6,
         rpp: 50,
@@ -24,6 +24,15 @@ export function fetchPhotoDetail(id){
   })
 }
 
-export function searchPhotos(search, filter){
-
+export function fetchPhotosWithTerm(search, filter, page){
+  return axios.get(`${URL}/search`,{
+    params:{
+      term: search,
+      page: page || 1,
+      consumer_key: CONSUMER_KEY,
+      image_size: 6,
+      rpp: 50,
+      exclude: "nude"
+    }
+  })
 }
