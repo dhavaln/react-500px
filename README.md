@@ -1,5 +1,5 @@
 ## React-500px
-Simple 500px client using React, Redux, Redux thunk, axios with multi-page support. The initial commit contains only few features like browse through some categories and load photo detail.
+Simple 500px client using React, Redux, Redux thunk, axios with multi-page support. The initial commit contains only few features like &#8226; Browse through categories &#8226; Photo detail &#8226; Search Photos
 
 ### Recent Updates
 
