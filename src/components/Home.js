@@ -7,12 +7,10 @@ const Home = React.createClass({
         this.props.loadPhotos(this.props.selectedFilter, 1);
       }
   },
+  
   render(){
     return (
       <div>
-        <div >
-
-        </div>
         <div>
           <Photos {...this.props}/>
         </div>

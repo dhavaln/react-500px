@@ -1,3 +1,4 @@
+import { PHOTOS_FETCH, PHOTOS_ERROR, PHOTOS_LOADED } from '../actions/photos';
 
 const initialState = {
   isLoading: false,
@@ -19,7 +20,7 @@ const initialState = {
 
 export default function photos(state = initialState, action){
   switch(action.type){
-    case 'PHOTOS_LOADED':
+    case PHOTOS_LOADED:
       return Object.assign({}, state,{
         photos: action.page === 1 ? action.photos : [...state.photos, ...action.photos],
         isLoading: false,
@@ -28,9 +29,9 @@ export default function photos(state = initialState, action){
         selectedFilter: action.selectedFilter,
         page: action.page
       });
-    case 'FETCH_PHOTOS':
+    case PHOTOS_FETCH:
       return Object.assign({}, state, {isLoading: true, selectedFilter: action.selectedFilter});
-    case 'PHOTOS_ERROR':
+    case PHOTOS_ERROR:
       return Object.assign({}, state, {isLoading: false, isError: true, message: action.message});
     default:
       return state;

@@ -21,3 +21,7 @@ export function fetchPhotoDetail(id){
     }
   })
 }
+
+export function searchPhotos(search, filter){
+  
+}

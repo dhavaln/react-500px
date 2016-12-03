@@ -2,8 +2,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Main from './components/Main';
-import * as actionCreators from './actions/index';
+
 import * as photoActions from './actions/photos';
+import * as photoDetailActions from './actions/photoDetail';
 
 import './App.css';
 
@@ -12,7 +13,7 @@ const mapStateToProps = function(state){
 }
 
 const mapDispatchToProps = function(dispatch){
-  return bindActionCreators({...photoActions, ...actionCreators}, dispatch);
+  return bindActionCreators({...photoActions, ...photoDetailActions}, dispatch);
 }
 
 const App = connect(mapStateToProps, mapDispatchToProps)(Main);

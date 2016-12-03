@@ -4,8 +4,11 @@ import Masonry from 'react-masonry-component';
 
 const Photos = React.createClass({
   render(){
+    let loadingEle = <div></div>;
+    let errorEle = <div></div>;
+
     if(this.props.isLoading){
-      return (
+      loadingEle = (
         <div>
           <br/>
           <br/>
@@ -18,16 +21,20 @@ const Photos = React.createClass({
             </div>
           </div>
         </div>
-      )
-    }else if(this.props.isError){
-      return (
+      );
+    }
+
+    if(this.props.isError){
+      errorEle = (
         <div className="pt-callout .modifier">
           <h5>Error</h5>
           {this.props.message.message}
         </div>
       )
-    }else{
-      return (
+    }
+
+    return (
+      <div>
         <Masonry
           className={'photo-container'}
           elementType={'ul'}
@@ -38,8 +45,14 @@ const Photos = React.createClass({
             return <Photo {...p} key={i}/>
           })}
         </Masonry>
-      )
-    }
+        <div>
+          {loadingEle}
+        </div>
+        <div>
+          {errorEle}
+        </div>
+      </div>
+    )
   }
 });
 

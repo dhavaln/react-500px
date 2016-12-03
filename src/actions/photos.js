@@ -1,7 +1,11 @@
 import { fetchPhotos, fetchPhotoDetail } from '../data/api';
 
+export const PHOTOS_FETCH = 'FETCH_PHOTOS';
+export const PHOTOS_ERROR = 'PHOTOS_ERROR';
+export const PHOTOS_LOADED = 'PHOTOS_LOADED';
+
 export const loadPhotos = (filter, page) => (dispatch) => {
-  dispatch({type: 'FETCH_PHOTOS', selectedFilter: filter});
+  dispatch({type: PHOTOS_FETCH, selectedFilter: filter});
   fetchPhotos(filter, page)
   .then(function(response){
     dispatch(photosLoaded(response.data.photos, response.data.current_page, filter));
@@ -11,36 +15,18 @@ export const loadPhotos = (filter, page) => (dispatch) => {
   });
 }
 
-export const loadPhotoDetail = (id) => (dispatch) => {
-    dispatch({type: 'FETCH_PHOTO_DETAIL'});
-    fetchPhotoDetail(id)
-    .then(response => {
-      dispatch(photoDetailLoaded(response.data));
-    })
-    .catch(err => {
-      dispatch(loadingError(err));
-    })
-}
-
 function loadingError(message){
   return {
-    type: 'PHOTOS_ERROR',
+    type: PHOTOS_ERROR,
     message: message
   }
 }
 
 function photosLoaded(photos, page, filter){
   return {
-    type: 'PHOTOS_LOADED',
+    type: PHOTOS_LOADED,
     photos: photos,
     page: page,
     selectedFilter: filter
-  }
-}
-
-function photoDetailLoaded(detail){
-  return {
-    type: 'PHOTO_DETAIL',
-    detail,
   }
 }
