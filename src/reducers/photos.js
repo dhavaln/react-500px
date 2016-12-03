@@ -22,7 +22,7 @@ export default function photos(state = initialState, action){
   switch(action.type){
     case PHOTOS_LOADED:
       return Object.assign({}, state,{
-        photos: action.page === 1 ? action.photos : [...state.photos, ...action.photos],
+        photos: action.page === 1 ? filterNsfwPhotos(action.photos) : [...state.photos, ... filterNsfwPhotos(action.photos)],
         isLoading: false,
         isError: false,
         message: '',
@@ -30,10 +30,20 @@ export default function photos(state = initialState, action){
         page: action.page
       });
     case PHOTOS_FETCH:
-      return Object.assign({}, state, {isLoading: true, selectedFilter: action.selectedFilter});
+      if(state.selectedFilter !== action.selectedFilter){
+        return Object.assign({}, state, {isLoading: true, selectedFilter: action.selectedFilter, photos: []});
+      }else{
+        return Object.assign({}, state, {isLoading: true, selectedFilter: action.selectedFilter});
+      }
     case PHOTOS_ERROR:
       return Object.assign({}, state, {isLoading: false, isError: true, message: action.message});
     default:
       return state;
   }
+}
+
+function filterNsfwPhotos(photos){
+  const filterPhotos = photos.filter(p => !p.nsfw);
+  console.log(`filtered photos found ${photos.length - filterPhotos.length}`);
+  return filterPhotos;
 }

@@ -9,7 +9,9 @@ export function fetchPhotos(filter, page){
         feature: filter,
         page: page || 2,
         consumer_key: CONSUMER_KEY,
-        image_size: 6
+        image_size: 6,
+        rpp: 50,
+        exclude: "nude"
       }
     });
 }
@@ -23,5 +25,5 @@ export function fetchPhotoDetail(id){
 }
 
 export function searchPhotos(search, filter){
-  
+
 }
