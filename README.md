@@ -3,8 +3,8 @@ Simple 500px client using React, Redux, Redux thunk, axios with multi-page suppo
 
 ### Recent Updates
 
-* React Masonary Layout Component for Photo grid display
-* BlueprintJS integrated (mostly for CSS)
+* Fixed Search and Pagination
+* Cleaning up Redux actions and reducers a bit
 
 ## Home 
 ![alt tag](https://dl.dropbox.com/s/w97wi4bx36g4mvu/React500px_Home.png)
